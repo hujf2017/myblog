@@ -51,12 +51,12 @@ public class login {
              Cookie cookie = new Cookie("userId",""+id);
              cookie.setMaxAge(3600*24); 
              httpServletResponse.addCookie(cookie);
-             request.getSession().setAttribute("admin",adminService.getById(id));
+             request.getSession().setAttribute("admin",adminService.getById(id));//设置session内容
              res.put("stateCode", "2");
         }
      
 
-    return res;
+    return res;  
     }
 
    
