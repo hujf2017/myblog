@@ -37,8 +37,8 @@ public class AdminController {
         String dates = df.format(date);
         Admin admin=(Admin) request.getSession().getAttribute("admin");//
         AdminLoginLog lastLoginLog=null;
-        int a = admin.getId();
-        List<AdminLoginLog> adminLoginLog =adminLoginLogService.selectRencent(a);
+       
+       //List<AdminLoginLog> adminLoginLog =adminLoginLogService.selectRencent(a);
         try {
             if (adminLoginLogService.selectRencent(admin.getId())!=null || adminLoginLogService.selectRencent(admin.getId()).size()>0){
                 List<AdminLoginLog> adminLoginLogs=adminLoginLogService.selectRencent(admin.getId());

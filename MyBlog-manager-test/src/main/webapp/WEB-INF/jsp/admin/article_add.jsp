@@ -36,6 +36,8 @@
             <select class="form-control" id="catalogId" name="catalogId">
                 <option value="0">学习</option>
                 <option value="1">生活</option>
+                <option value="2">摘要</option>
+                <option value="3">人生随笔</option>
             </select>
         </div>
         <div class="form-group">

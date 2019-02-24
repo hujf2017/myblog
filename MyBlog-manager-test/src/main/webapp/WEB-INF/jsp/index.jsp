@@ -273,8 +273,11 @@
 <c:forEach items="${articles}" var="article">
     <article class="article">
         <time>${article.time}</time>
-        <h2 class="title"><a href="article?id=${article.id}">${article.title}</a></h2>
-        <span><i>${article.keywords}</i></span>
+         <h2 class="title"><a href="article?id=${article.id}">${article.title}</a></h2>      
+         <span><i><c:if test="${article.catalogId == 0}">学习</c:if></i></span>
+         <span><i><c:if test="${article.catalogId == 1}">生活</c:if></i></span>
+         <span><i><c:if test="${article.catalogId == 2}">摘要</c:if></i></span>
+         <span><i><c:if test="${article.catalogId == 3}">人生随笔</c:if></i></span>
         <section class="article-content markdown-body">
             <blockquote>
                 <p>${article.desci}</p>
@@ -290,11 +293,45 @@
             <ul class="pagination" >
                 <li <c:if test="${pageInfo.pageNum==1}">class="disabled"</c:if>><a href="/?page=1">上一页</a></li>
                 <c:forEach begin="1" end="${pageInfo.pages}" step="1" var="pageNo">
-                    <li <c:if test="${pageInfo.pageNum==pageNo}">class="active"</c:if>><a href="/?page=${pageNo}">跳转</a></li>
+                    <li <c:if test="${pageInfo.pageNum==pageNo}">class="active"</c:if>><a href="/?page=${pageNo}">${pageNo}</a></li>
                 </c:forEach>
                 <li <c:if test="${pageInfo.pageNum==pageInfo.pages}">class="disabled"</c:if>><a href="/?page=${pageInfo.pages}">下一页</a></li>
             </ul>
         </div>
+</div>
+
+<div  id="login">
+    <div class="form-inline"  >
+        <button id="loginButton"  class="btn btn-primary">登陆
+        </button>
+    </div>
+    <script>
+        $("#loginButton").click(function () {
+            
+             {
+                $.ajax({
+                    type: "POST",
+                    url: "/post",
+                    data: {
+                        id:$("#adminId").val() ,
+                        password: $("#passwd").val()
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        if(data.stateCode.trim() == "0") {
+                            $("#info").text("提示:该用户不存在");
+                        } else if(data.stateCode.trim() == "1") {
+                            $("#info").text("提示:密码错误");
+                        } else if(data.stateCode.trim() == "2"){
+                            $("#info").text("提示:登陆成功，跳转中...");
+                            window.location.href="/admin/main";
+                        }
+                    }
+                });
+            }
+        })
+
+    </script>
 </div>
     <footer id="footer">
         <section id="copyright">

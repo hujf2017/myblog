@@ -27,7 +27,7 @@ public class login {
 	
     @RequestMapping(value = {"/admin/index","/admin","/admin/login"})
     public String toIndex(HttpServletRequest request) {
-
+    	
         return "admin/login";
     }
     
@@ -49,7 +49,7 @@ public class login {
              adminLoginLog.setIp(ip);
              int log=adminLoginLogService.insert(adminLoginLog);  //保存上次登录信息
              Cookie cookie = new Cookie("userId",""+id);
-             cookie.setMaxAge(3600*24);
+             cookie.setMaxAge(3600*24); 
              httpServletResponse.addCookie(cookie);
              request.getSession().setAttribute("admin",adminService.getById(id));
              res.put("stateCode", "2");

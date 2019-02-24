@@ -57,12 +57,14 @@
     <tr class="table-info">
         <th>id</th>
         <th width="25%">标题</th>
+        <th>栏目</th>
         <th>发表时间</th>
         <th>点击量</th>
         <th>详情</th>
         <th>评论</th>
         <th>编辑</th>
         <th>删除</th>
+        
     </tr>
     </thead>
     <tbody>
@@ -70,6 +72,11 @@
     <tr>
         <th scope="row">${article.id}</th>
         <td>${article.title}</td>
+        <td><c:if test="${article.catalogId == 0}">学习</c:if>
+        <c:if test="${article.catalogId == 1}">生活</c:if>
+        <c:if test="${article.catalogId == 2}">摘要</c:if>
+        <c:if test="${article.catalogId == 3}">人生随笔</c:if> 
+        </td>
         <td>${article.time}</td>
         <td>${article.click}</td>
         <td><button type="button" class="btn btn-outline-info btn-sm" onclick="fullScreen('《${article.title}》','/admin/article/detail?id=${article.id}')">详情</button></td>
