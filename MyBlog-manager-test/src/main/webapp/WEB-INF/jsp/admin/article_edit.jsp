@@ -39,6 +39,8 @@
             <select class="form-control" id="catalogId" name="catalogId">
                 <option value="0" <c:if test="${article.catalogId==0}">selected="selected"</c:if>>学习</option>
                 <option value="1" <c:if test="${article.catalogId==1}">selected="selected"</c:if>>生活</option>
+                <option value="2" <c:if test="${article.catalogId==2}">selected="selected"</c:if>>摘要</option>
+                <option value="3" <c:if test="${article.catalogId==3}">selected="selected"</c:if>>人生随笔</option>
             </select>
         </div>
         <div class="form-group">
@@ -58,8 +60,7 @@
             </script>
             </div>
             <input type="submit" />
-                </form>
-
+                </form>	
                 <script>
                 $(function(){
                     var ue = UE.getEditor('editor');
@@ -69,5 +70,7 @@
                 });
             </script>
         </div>
+        
+        
 </body>
 </html>

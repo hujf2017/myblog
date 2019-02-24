@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -105,8 +107,10 @@ public class ArticleController {
         }
     }
     @RequestMapping(value = "/admin/article/search")
-    public ModelAndView articleSearch(HttpServletRequest request){
+    public ModelAndView articleSearch(HttpServletRequest request) throws UnsupportedEncodingException{
+
         String word=request.getParameter("word");
+        word = new String(word.getBytes("iso-8859-1"),"UTF-8");
         List<Article> articles=articleService.selectByWord(word);
 
         ModelAndView modelAndView=new ModelAndView("/admin/article_list");
