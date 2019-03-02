@@ -52,6 +52,7 @@ public class post {
 		String cookie = httpPostWithForm("http://localhost:8080/api/loginCheck", params);//模拟post 获取cookie
 		String url1 = "http://localhost:8080/admin/main";
 		request.getSession().setAttribute("admin",adminService.getById(Integer.parseInt(params.get("id"))));
+		request.getSession().setAttribute("post","success");
 		response.sendRedirect(url1);
 //		InputStream urlStream = resumeConnection.getInputStream();  
 //		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlStream));  
