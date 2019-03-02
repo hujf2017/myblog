@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -34,18 +35,22 @@ public class ArticleController {
 
     @RequestMapping("/article")
     public ModelAndView detail(HttpServletRequest request){
-
         int id=Integer.parseInt(request.getParameter("id"));
         List<Comment> comments=commentService.allComments(id,0,10);
-
+        
         Article article=articleService.selectById(id);
         Article lastArticle=articleService.selectLastArticle(id);
         Article nextArticle=articleService.selectNextArticle(id);
         
         Integer clickNum=article.getClick();
-        article.setClick(clickNum+1);//点击量+1
+        String a =request.getSession().getId();
+        
+        String b=(String) request.getSession().getAttribute("sessionid");  //防止刷点击量，sessionid控制
+        if(a!=b){
+        	article.setClick(clickNum+1);//点击量+1
+        }
+        request.getSession().setAttribute("sessionid",a);
         articleService.updateArticle(article);
-
         ModelAndView modelAndView=new ModelAndView("detail");
         modelAndView.addObject("article",article);
         modelAndView.addObject("comments",comments);
