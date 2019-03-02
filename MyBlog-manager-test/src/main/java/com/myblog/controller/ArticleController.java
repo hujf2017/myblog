@@ -110,7 +110,7 @@ public class ArticleController {
     public ModelAndView articleSearch(HttpServletRequest request) throws UnsupportedEncodingException{
 
         String word=request.getParameter("word");
-        word = new String(word.getBytes("iso-8859-1"),"UTF-8");
+        word = new String(word.getBytes("iso-8859-1"),"UTF-8");//编码转换
         List<Article> articles=articleService.selectByWord(word);
 
         ModelAndView modelAndView=new ModelAndView("/admin/article_list");

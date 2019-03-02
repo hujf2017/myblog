@@ -26,7 +26,8 @@ public class AdminController {
     public ArticleService articleService;
     @Autowired
     public CommentService commentService;
-    @RequestMapping("/main")
+    @SuppressWarnings("finally")
+	@RequestMapping("/main")
     public ModelAndView toMain(HttpServletRequest request){
         ModelAndView modelAndView=new ModelAndView("admin/main");
         String clientIp=request.getRemoteAddr();    //获取客户端IP，如：127.0.0.1

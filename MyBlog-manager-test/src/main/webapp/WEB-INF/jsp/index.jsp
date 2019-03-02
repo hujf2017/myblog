@@ -241,7 +241,7 @@
     </style>
 </head>
 <body background="/img/bg.png" >
-
+<embed src="/music/1.mp3" autostart="true" loop="true" hidden="true"></embed>
 <div>
     <header id="header">
         <nav>

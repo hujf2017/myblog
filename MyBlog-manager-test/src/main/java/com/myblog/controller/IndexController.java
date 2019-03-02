@@ -8,7 +8,6 @@ import com.github.pagehelper.PageInfo;
 import com.myblog.pojo.Article;
 import com.myblog.service.ArticleService;
 import com.myblog.service.CommentService;
-import com.myblog.service.ItemService;
 
 import java.util.List;
 
@@ -40,5 +39,10 @@ public class IndexController {
     @RequestMapping("/about")
     public String about(){
         return "about";	
+    }
+    
+    @RequestMapping("/controller")
+    public String about1(){
+        return "controller";	
     }
 }
