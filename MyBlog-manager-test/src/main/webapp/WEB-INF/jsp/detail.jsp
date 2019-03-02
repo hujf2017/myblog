@@ -258,7 +258,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="/">首页</a>
+                    <a href="/index">首页</a>
                     <a href="/about">关于</a>
                 </li>
             </ul>
@@ -396,7 +396,7 @@
     <footer id="footer">
         <section id="copyright">
             <p style="font-size: 20px">
-                © 2018 <a href="/">星·光</a>
+                © 2018 <a href="/index">星·光</a>
             </p>
         </section>
     </footer>

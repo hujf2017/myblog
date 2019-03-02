@@ -43,13 +43,13 @@ public class ArticleController {
         Article nextArticle=articleService.selectNextArticle(id);
         
         Integer clickNum=article.getClick();
-        String a =request.getSession().getId();
-        
+        String a =request.getSession().getId();   //第一次获取session 
+        String c= a+request.getParameter("id");
         String b=(String) request.getSession().getAttribute("sessionid");  //防止刷点击量，sessionid控制
-        if(a!=b){
+        if(!c.equals(b)){  //
         	article.setClick(clickNum+1);//点击量+1
         }
-        request.getSession().setAttribute("sessionid",a);
+        request.getSession().setAttribute("sessionid",c);
         articleService.updateArticle(article);
         ModelAndView modelAndView=new ModelAndView("detail");
         modelAndView.addObject("article",article);

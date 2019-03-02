@@ -35,7 +35,17 @@ public class IndexController {
         return modelAndView;
     }
 
-
+    @RequestMapping("/index")
+    public ModelAndView index2(@RequestParam(required=true,defaultValue="1") Integer page, @RequestParam(required=false,defaultValue="5") Integer pageSize){
+        ModelAndView modelAndView =new ModelAndView("index");
+        PageHelper.startPage(page, pageSize);
+        List<Article> articles=articleService.queryAll();
+        PageInfo<Article> pageInfo=new PageInfo<Article>(articles);
+        modelAndView.addObject("articles",articles);
+        modelAndView.addObject("pageInfo",pageInfo);
+        return modelAndView;
+    }
+    
     @RequestMapping("/about")
     public String about(){
         return "about";	
