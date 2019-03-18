@@ -87,7 +87,7 @@ public class ArticleController {
         modelAndView.addObject("pageInfo",pageInfo);
         return modelAndView;
     }
-    
+    //新增关键字筛选
     @RequestMapping("/admin/article/listsign")
     public ModelAndView articleListsign(HttpServletRequest request,@RequestParam(required=true,defaultValue="1") Integer page, @RequestParam(required=false,defaultValue="10") Integer pageSize){
         PageHelper.startPage(page, pageSize);
