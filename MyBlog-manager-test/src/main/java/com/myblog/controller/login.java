@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.myblog.pojo.AdminLoginLog;
 import com.myblog.service.AdminLoginLogService;
 import com.myblog.service.AdminService;
-import com.myblog.service.impl.AdminLoginLogServiceImpl;
-import com.myblog.service.impl.AdminServiceImpl;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +45,7 @@ public class login {
              adminLoginLog.setAdminId(id);
              adminLoginLog.setDate(new Date());
              adminLoginLog.setIp(ip);
-             int log=adminLoginLogService.insert(adminLoginLog);  //保存上次登录信息
+             adminLoginLogService.insert(adminLoginLog);  //保存上次登录信息
              Cookie cookie = new Cookie("userId",""+id);
              cookie.setMaxAge(3600*24); 
              httpServletResponse.addCookie(cookie);

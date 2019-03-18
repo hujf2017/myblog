@@ -10,22 +10,21 @@ import com.myblog.service.CommentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 @Controller
+@Transactional
 public class ArticleController {
 
     @Autowired
@@ -51,6 +50,7 @@ public class ArticleController {
         }
         request.getSession().setAttribute("sessionid",c);
         articleService.updateArticle(article);
+       // int ab = 1/0;
         ModelAndView modelAndView=new ModelAndView("detail");
         modelAndView.addObject("article",article);
         modelAndView.addObject("comments",comments);
@@ -87,6 +87,19 @@ public class ArticleController {
         modelAndView.addObject("pageInfo",pageInfo);
         return modelAndView;
     }
+    
+    @RequestMapping("/admin/article/listsign")
+    public ModelAndView articleListsign(HttpServletRequest request,@RequestParam(required=true,defaultValue="1") Integer page, @RequestParam(required=false,defaultValue="10") Integer pageSize){
+        PageHelper.startPage(page, pageSize);
+        String i =request.getParameter("id");
+        List<Article> articles=articleService.selectBySign(Integer.parseInt(request.getParameter("id")));
+        PageInfo<Article> pageInfo=new PageInfo<Article>(articles);
+        ModelAndView modelAndView=new ModelAndView("/admin/article_list");
+        modelAndView.addObject("articles",articles);
+        modelAndView.addObject("pageInfo",pageInfo);
+        return modelAndView;
+    }
+    
     @RequestMapping("/admin/article/add")
     public ModelAndView articleAdd(){
         ModelAndView modelAndView=new ModelAndView("/admin/article_add");

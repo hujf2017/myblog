@@ -274,7 +274,6 @@
             <br><br>
             <h3>邮箱:<a href="mailto:952405831@qq.com">952405831@qq.com</a></h3>
             <br><br><br><br>
-            </p>
         </article>
     </div>
 
@@ -287,8 +286,5 @@
         </p>
     </section>
 </footer>
-
-</div>
-</div>
 </body>
 </html>

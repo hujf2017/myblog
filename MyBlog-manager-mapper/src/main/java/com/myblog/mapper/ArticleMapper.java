@@ -23,6 +23,8 @@ public interface ArticleMapper {
     Article selectByPrimaryKey(Integer id);
     
     List<Article> selectByWord(String word);
+    
+    List<Article> selectBySign(int  id);
 
     int updateByExampleSelective(@Param("record") Article record, @Param("example") ArticleExample example);
 

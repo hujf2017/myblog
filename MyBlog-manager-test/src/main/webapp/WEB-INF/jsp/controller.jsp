@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>框架实现背景音乐不切换</title>
 </head>
-</frameset>
 	<body >
 
 		<div class="container">

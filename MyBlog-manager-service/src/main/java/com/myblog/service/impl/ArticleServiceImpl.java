@@ -3,15 +3,18 @@ package com.myblog.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myblog.mapper.ArticleMapper;
 import com.myblog.pojo.Article;
 import com.myblog.pojo.ArticleExample;
 import com.myblog.service.ArticleService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class ArticleServiceImpl implements ArticleService{
 
     @Autowired
@@ -97,6 +100,17 @@ public class ArticleServiceImpl implements ArticleService{
 	public List<Article> selectByWord(String word) {
 		return articleDao.selectByWord(word);
 	
+	}
+
+
+
+
+
+	@Override
+	public List<Article> selectBySign(int  id) {
+		return articleDao.selectBySign(id);
+		// TODO Auto-generated method stub
+		//return articleDao.se;
 	}
 
 

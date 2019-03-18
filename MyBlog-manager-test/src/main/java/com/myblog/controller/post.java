@@ -34,16 +34,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.myblog.pojo.Admin;
+import com.myblog.pojo.AdminLoginLog;
+import com.myblog.service.AdminLoginLogService;
 import com.myblog.service.AdminService;
  
 @Controller
 public class post {
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	public AdminLoginLogService adminLoginLogService;
 	@RequestMapping(value = {"/post"})
-	public  void postTest(HttpServletRequest  request ,HttpServletResponse response) throws ClientProtocolException, IOException, ServletException {
+	public  ModelAndView postTest(HttpServletRequest  request ,HttpServletResponse response) throws ClientProtocolException, IOException, ServletException {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 
 		Map<String,String> params = new HashMap<String,String>();
@@ -53,7 +58,44 @@ public class post {
 		String url1 = "http://localhost:8080/admin/main";
 		request.getSession().setAttribute("admin",adminService.getById(Integer.parseInt(params.get("id"))));
 		request.getSession().setAttribute("post","success");
-		response.sendRedirect(url1);
+		Admin admin = (Admin) request.getSession().getAttribute("admin");//
+		ModelAndView modelAndView = new ModelAndView("admin/main");
+		AdminLoginLog lastLoginLog = null;
+		boolean test = false;
+		// List<AdminLoginLog> adminLoginLog
+		// =adminLoginLogService.selectRencent(a);
+		try {
+			if (adminLoginLogService.selectRencent(admin.getId()) != null
+					|| adminLoginLogService.selectRencent(admin.getId()).size() > 0) {
+				List<AdminLoginLog> adminLoginLogs = adminLoginLogService.selectRencent(admin.getId());
+				lastLoginLog = adminLoginLogs.get(adminLoginLogs.size() - 1);
+			}
+
+		} catch (Exception e) {
+			test = true;
+		} finally {
+			if (test == false) {
+				int articleCount = 1;
+				int commentCount = 1;
+				int loginNum = 1;
+				modelAndView.addObject("clientIp", 1);
+				modelAndView.addObject("hostIp", 1);
+				modelAndView.addObject("hostPort", 1);
+				modelAndView.addObject("date", 1);
+				if (lastLoginLog != null) {
+					modelAndView.addObject("loginLog", lastLoginLog);
+				}
+				modelAndView.addObject("articleCount", articleCount);// 文章数
+				modelAndView.addObject("commentCount", commentCount);// 评论数
+				modelAndView.addObject("loginNum", loginNum); // 登录次数
+				
+					return modelAndView;
+				
+			} else {
+				response.sendRedirect("/admin");
+				return null;
+			}
+		}
 //		InputStream urlStream = resumeConnection.getInputStream();  
 //		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlStream));  
 //		request.getRequestDispatcher(url).forward(request, response);

@@ -41,6 +41,19 @@
                 <a class="nav-link" href="/admin/article/list">文章管理</a>
 
             </li>
+            
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/article/listsign?id=0">学习</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/article/listsign?id=1">生活</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/article/listsign?id=2">摘要</a>
+            </li>
+             <li class="nav-item active">
+                <a class="nav-link" href="/admin/article/listsign?id=3">人生随笔</a>
+            </li>
 
         </ul>
         <form class="form-inline my-2 my-lg-0" action="/admin/article/search" method="GET">

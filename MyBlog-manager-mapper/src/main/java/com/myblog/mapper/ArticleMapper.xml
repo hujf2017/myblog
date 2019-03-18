@@ -123,6 +123,13 @@
     where title LIKE CONCAT(CONCAT('%', #{word}), '%') OR content  LIKE CONCAT(CONCAT('%', #{word}), '%')
   </select>
   
+   <select id="selectBySign" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    *
+    from article
+    where  catalog_id = #{id,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from article
     where id = #{id,jdbcType=INTEGER}
