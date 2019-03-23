@@ -18,6 +18,8 @@
 	<!-- 资源映射 -->
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
+
+	
 	<bean id ="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	<!-- 设置默认编码 --> 

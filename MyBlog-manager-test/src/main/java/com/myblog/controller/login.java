@@ -1,5 +1,8 @@
 package com.myblog.controller;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +34,13 @@ public class login {
     
     
     @RequestMapping(value = "/api/loginCheck", method = RequestMethod.POST)
-    public @ResponseBody Object loginCheck(HttpServletRequest request,HttpServletResponse httpServletResponse) {
+    public @ResponseBody Object loginCheck(HttpServletRequest request,HttpServletResponse httpServletResponse) { 	
         int id=Integer.parseInt(request.getParameter("id"));
         String passwd = request.getParameter("password");
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(request.getParameter("id"),passwd);
+        subject.login(token);
+        System.out.println(subject.isAuthenticated());
         HashMap<String, String> res = new HashMap<String, String>();
         if(adminService.getById(id)==null){
         	 res.put("stateCode", "0");
