@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.myblog.mapper.AdminMapper" >
-  <resultMap id="BaseResultMap" type="com.myblog.pojo.Admin" >
+<mapper namespace="com.myblog.mapper.BgUserMapper" >
+  <resultMap id="BaseResultMap" type="com.myblog.pojo.BgUser" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,13 +67,13 @@
   <sql id="Base_Column_List" >
     id, username, password
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.myblog.pojo.AdminExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.myblog.pojo.BgUserExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from admin
+    from bg_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,33 +84,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from admin
+    from bg_user
     where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from admin
-    where username = #{username,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from admin
+    delete from bg_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.myblog.pojo.AdminExample" >
-    delete from admin
+  <delete id="deleteByExample" parameterType="com.myblog.pojo.BgUserExample" >
+    delete from bg_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.myblog.pojo.Admin" >
-    insert into admin (id, username, password
+  <insert id="insert" parameterType="com.myblog.pojo.BgUser" >
+    insert into bg_user (id, username, password
       )
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=CHAR}
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.myblog.pojo.Admin" >
-    insert into admin
+  <insert id="insertSelective" parameterType="com.myblog.pojo.BgUser" >
+    insert into bg_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -130,18 +124,18 @@
         #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
-        #{password,jdbcType=CHAR},
+        #{password,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.myblog.pojo.AdminExample" resultType="java.lang.Integer" >
-    select count(*) from admin
+  <select id="countByExample" parameterType="com.myblog.pojo.BgUserExample" resultType="java.lang.Integer" >
+    select count(*) from bg_user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update admin
+    update bg_user
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
@@ -150,7 +144,7 @@
         username = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null" >
-        password = #{record.password,jdbcType=CHAR},
+        password = #{record.password,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -158,30 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update admin
+    update bg_user
     set id = #{record.id,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=CHAR}
+      password = #{record.password,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.myblog.pojo.Admin" >
-    update admin
+  <update id="updateByPrimaryKeySelective" parameterType="com.myblog.pojo.BgUser" >
+    update bg_user
     <set >
       <if test="username != null" >
         username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
-        password = #{password,jdbcType=CHAR},
+        password = #{password,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.myblog.pojo.Admin" >
-    update admin
+  <update id="updateByPrimaryKey" parameterType="com.myblog.pojo.BgUser" >
+    update bg_user
     set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=CHAR}
+      password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

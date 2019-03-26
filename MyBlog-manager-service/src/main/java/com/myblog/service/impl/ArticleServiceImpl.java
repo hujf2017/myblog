@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
 public class ArticleServiceImpl implements ArticleService{
 
     @Autowired
@@ -109,7 +108,7 @@ public class ArticleServiceImpl implements ArticleService{
 	@Override
 	public List<Article> selectBySign(int  id) {
 		return articleDao.selectBySign(id);
-		// TODO Auto-generated method stub
+
 		//return articleDao.se;
 	}
 

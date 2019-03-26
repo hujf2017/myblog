@@ -21,8 +21,10 @@ public class CommentController {
     public CommentService commentService;
 
     @RequestMapping(value = "/api/comment/add", method = RequestMethod.POST)
-    public @ResponseBody Object commentAdd(HttpServletRequest request) {
+    @ResponseBody
+    public  Object commentAdd(HttpServletRequest request) {
         Comment comment=new Comment();
+        String id =request.getParameter("articleId");
         comment.setArticleId(Long.parseLong(request.getParameter("articleId")));
         comment.setContent(request.getParameter("content"));
         comment.setDate(new Date());

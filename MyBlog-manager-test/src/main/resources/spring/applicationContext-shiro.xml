@@ -24,7 +24,7 @@
 	<bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
 		<property name="realm" ref="realm" />
 	</bean>
-	<!--2.开启事物注解 -->
+	<!--2.创建realm -->
 	<bean class ="com.hd.shiro.realm.CustomerRealm" id ="realm"></bean>
 </beans>
 		

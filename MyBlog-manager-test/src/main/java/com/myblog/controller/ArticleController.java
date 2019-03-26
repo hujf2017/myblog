@@ -79,8 +79,9 @@ public class ArticleController {
     }
     @RequestMapping("/admin/article/list")
     public ModelAndView articleList(@RequestParam(required=true,defaultValue="1") Integer page, @RequestParam(required=false,defaultValue="10") Integer pageSize){
-        PageHelper.startPage(page, pageSize);
+    	PageHelper.startPage(page, pageSize);
         List<Article> articles=articleService.queryAll();
+        
         PageInfo<Article> pageInfo=new PageInfo<Article>(articles);
         ModelAndView modelAndView=new ModelAndView("/admin/article_list");
         modelAndView.addObject("articles",articles);

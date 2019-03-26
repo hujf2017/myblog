@@ -16,4 +16,9 @@ public class AdminServiceImpl implements AdminService{
     public Admin getById(Integer id) {
         return adminDao.selectByPrimaryKey(id);
     }
+	@Override
+	public String getpasswordByUsername(String name) {
+		// TODO Auto-generated method stub
+		 return adminDao.selectByUsername(name).getPassword();
+	}
 }

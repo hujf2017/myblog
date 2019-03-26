@@ -10,6 +10,10 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.myblog.service.AdminService;
+
 import sun.security.provider.MD5;
 
 import java.util.HashMap;
@@ -18,9 +22,12 @@ import java.util.Map;
 import java.util.Set;
 
 public class CustomerRealm extends AuthorizingRealm {
+	@Autowired
+	AdminService adminService;
+	
     Map<String,String> map = new HashMap();
     {
-        map.put("001","1234");
+        map.put("001","1a0e25740912f4c329cb4cf809f9592f");
     }
     //授权
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -56,15 +63,17 @@ public class CustomerRealm extends AuthorizingRealm {
         //2.通过用户名获取数据库凭证
         String password = getpasswordByUsername(username);
         if(password ==null){
-            return null;
+            return null;//密码没有是没有账号
         }
-       SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo("001",password,"customerRealm");
-//        authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes("hujf"));
+       SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username,password,"customerRealm"); //正确的和错误的对比
+        authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes("hujf"));
         return authenticationInfo;
     }
 
     private String getpasswordByUsername(String username) {
-        return map.get(username);
+    	
+    	
+        return adminService.getpasswordByUsername(username);
     }
 
     public static void main(String []args){

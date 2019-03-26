@@ -29,7 +29,7 @@ public class AdminController {
 	@Autowired
 	public CommentService commentService;
 
-	@SuppressWarnings("finally")
+
 	@RequestMapping("/main")
 	public ModelAndView toMain(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ModelAndView modelAndView = new ModelAndView("admin/main");

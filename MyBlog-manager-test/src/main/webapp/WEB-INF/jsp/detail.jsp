@@ -320,7 +320,7 @@
                                <textarea id="content"  class="form-control" rows="3"  placeholder="文明上网，理性发言" ></textarea>
                          </div>
                  </div>
-        <input id="Id" type="hidden" value="${article.id}" >
+        <input id="articleId" type="hidden" value="${article.id}" >
     					<div class="form-group">
                     		<label for="name" class="col-sm-2 control-label">昵称</label>
 
