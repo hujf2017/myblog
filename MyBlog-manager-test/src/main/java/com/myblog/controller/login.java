@@ -41,6 +41,13 @@ public class login {
         UsernamePasswordToken token = new UsernamePasswordToken(request.getParameter("id"),passwd);
         subject.login(token);
         System.out.println(subject.isAuthenticated());
+        
+        if(subject.hasRole("admin")){
+        	 System.out.println(1);
+        }else{
+        	System.out.print(2);
+        }
+        
         HashMap<String, String> res = new HashMap<String, String>();
         if(adminService.getById(id)==null){
         	 res.put("stateCode", "0");

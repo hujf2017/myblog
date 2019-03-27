@@ -23,8 +23,16 @@
 	<!--1.创建SecurityManager对象 -->
 	<bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
 		<property name="realm" ref="realm" />
+		<property name="sessionManager" ref="sessionManager"></property>
 	</bean>
 	<!--2.创建realm -->
 	<bean class ="com.hd.shiro.realm.CustomerRealm" id ="realm"></bean>
+	
+	<bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager" id="sessionManager">
+		<property name="sessionDAO" ref="sessionRedisDao"></property>
+	</bean>
+	
+	<bean class ="com.hd.session.SessionRedisDao" id ="sessionRedisDao"></bean>
+	
 </beans>
 		

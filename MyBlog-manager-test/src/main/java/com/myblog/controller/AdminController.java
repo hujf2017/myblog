@@ -1,8 +1,11 @@
 package com.myblog.controller;
 
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myblog.pojo.Admin;
@@ -28,7 +31,20 @@ public class AdminController {
 	public ArticleService articleService;
 	@Autowired
 	public CommentService commentService;
-
+	
+//	@RequiresRoles("admin")
+//	@RequestMapping(value ="/testRole",method = RequestMethod.GET)
+//	@ResponseBody
+//	public String testRole(){
+//		return "testRole success";
+//	}
+//	
+	@RequiresRoles("admin1")
+	@RequestMapping(value ="/testRole",method = RequestMethod.GET)
+	@ResponseBody
+	public String testRole1(){
+		return "testRole1 success";
+	}
 
 	@RequestMapping("/main")
 	public ModelAndView toMain(HttpServletRequest request, HttpServletResponse response) throws IOException {

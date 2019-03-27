@@ -44,14 +44,14 @@ public class CustomerRealm extends AuthorizingRealm {
     private Set getPermissionByUsername(String username) {
         Set<String> sets = new HashSet();
         sets.add("user:delete");
-        sets.add("admin:add");
+        sets.add("admin1:add");
 
         return    sets;
     }
 
     private Set getrolesdByUsername(String username) {
         Set sets = new HashSet();
-        sets.add("admin");
+        sets.add("admin1");
         sets.add("user");
         return sets;
     }
