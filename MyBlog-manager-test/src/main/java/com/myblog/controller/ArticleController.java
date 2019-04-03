@@ -92,7 +92,7 @@ public class ArticleController {
     @RequestMapping("/admin/article/listsign")
     public ModelAndView articleListsign(HttpServletRequest request,@RequestParam(required=true,defaultValue="1") Integer page, @RequestParam(required=false,defaultValue="10") Integer pageSize){
         PageHelper.startPage(page, pageSize);
-        String i =request.getParameter("id");
+       // String i =request.getParameter("id");
         List<Article> articles=articleService.selectBySign(Integer.parseInt(request.getParameter("id")));
         PageInfo<Article> pageInfo=new PageInfo<Article>(articles);
         ModelAndView modelAndView=new ModelAndView("/admin/article_list");

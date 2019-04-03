@@ -37,23 +37,29 @@ public class login {
     public @ResponseBody Object loginCheck(HttpServletRequest request,HttpServletResponse httpServletResponse) { 	
         int id=Integer.parseInt(request.getParameter("id"));
         String passwd = request.getParameter("password");
+        String isrememberMe = request.getParameter("rememberme");
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(request.getParameter("id"),passwd);
-        subject.login(token);
+        boolean a =false;
+        switch(isrememberMe){
+        	case "true": a=true;
+        }
+        token.setRememberMe(a);
+        subject.login(token);//realm
         System.out.println(subject.isAuthenticated());
         
-        if(subject.hasRole("admin")){
-        	 System.out.println(1);
-        }else{
-        	System.out.print(2);
-        }
-        
-        HashMap<String, String> res = new HashMap<String, String>();
-        if(adminService.getById(id)==null){
-        	 res.put("stateCode", "0");
-        }else if(!adminService.getById(id).getPassword().equals(passwd)){
-            res.put("stateCode", "1");
-        }else {
+//        if(subject.hasRole("admin")){
+//        	 System.out.println(1);
+//        }else{
+//        	System.out.print(2);
+//        }
+//       // 把所有控制交给shiro
+       HashMap<String, String> res = new HashMap<String, String>();
+//        if(adminService.getById(id)==null){
+//        	 res.put("stateCode", "0");
+//        }else if(!adminService.getById(id).getPassword().equals(passwd)){
+//            res.put("stateCode", "1");
+//        }else {
         	 String ip=request.getRemoteAddr();
              AdminLoginLog adminLoginLog=new AdminLoginLog();
              adminLoginLog.setAdminId(id);
@@ -65,7 +71,7 @@ public class login {
              httpServletResponse.addCookie(cookie);
              request.getSession().setAttribute("admin",adminService.getById(id));//设置session内容
              res.put("stateCode", "2");
-        }
+       // }
      
 
     return res;  

@@ -50,6 +50,7 @@ public class CustomerRealm extends AuthorizingRealm {
     }
 
     private Set getrolesdByUsername(String username) {
+    	
         Set sets = new HashSet();
         sets.add("admin1");
         sets.add("user");
@@ -71,7 +72,7 @@ public class CustomerRealm extends AuthorizingRealm {
     }
 
     private String getpasswordByUsername(String username) {
-    	
+    	System.out.println("从数据库中获取相应密码");
     	
         return adminService.getpasswordByUsername(username);
     }

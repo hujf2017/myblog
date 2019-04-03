@@ -40,7 +40,7 @@ public class AdminController {
 //	}
 //	
 	@RequiresRoles("admin1")
-	@RequestMapping(value ="/testRole",method = RequestMethod.GET)
+	@RequestMapping(value ="/testRole1",method = RequestMethod.GET)
 	@ResponseBody
 	public String testRole1(){
 		return "testRole1 success";

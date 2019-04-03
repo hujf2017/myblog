@@ -18,6 +18,11 @@
 	            	密&nbsp;&nbsp;码: <input name="password" class="easyui-textbox" type="password" style="width:200px;height:32px" data-options="" value="admin"/>
 	            </div>
 	        </div>
+	        <div style="margin-bottom:20px">
+	            <div>
+	            	记住我: <input name="checkbox" class="easyui-checkbox"  style="width:200px;height:32px" data-options="" value="admin"/>
+	            </div>
+	        </div>
 	        <div>
 	            <a id="login" class="easyui-linkbutton" iconCls="icon-ok" style="width:100px;height:32px;margin-left: 50px">登录</a>
 	        </div>

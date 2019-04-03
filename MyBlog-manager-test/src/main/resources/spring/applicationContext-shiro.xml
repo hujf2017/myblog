@@ -24,15 +24,26 @@
 	<bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
 		<property name="realm" ref="realm" />
 		<property name="sessionManager" ref="sessionManager"></property>
+		<property name="cacheManager" ref="cacheManager"></property>
+		<property name="rememberMeManager" ref="cookieRememberMeManager"></property>
 	</bean>
 	<!--2.创建realm -->
 	<bean class ="com.hd.shiro.realm.CustomerRealm" id ="realm"></bean>
 	
-	<bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager" id="sessionManager">
+	<bean class="com.hd.session.CustomSessionManager" id="sessionManager">
 		<property name="sessionDAO" ref="sessionRedisDao"></property>
 	</bean>
 	
 	<bean class ="com.hd.session.SessionRedisDao" id ="sessionRedisDao"></bean>
+	
+	<bean class ="com.hd.cache.RedisCacheManager" id ="cacheManager"></bean>
+	
+	<bean class ="org.apache.shiro.web.mgt.CookieRememberMeManager" id="cookieRememberMeManager">
+		<property name="cookie" ref = "cookie"></property>
+	</bean>
+	<bean class ="org.apache.shiro.web.servlet.SimpleCookie" id="cookie">
+		<constructor-arg value="rememberMe"></constructor-arg>
+	</bean>
 	
 </beans>
 		

@@ -203,6 +203,12 @@
             <input type="password" class="form-control" name="passwd" id="passwd">
         </div>
         <br/>
+        <br/>
+         <div >
+            <span >记住我</span>
+            <input type="checkbox"  name="rememberMe" id="rememberMe" />
+        </div>
+        <br/>
         <p style="text-align: right;color: red;position: absolute" id="info"></p>
 
         <br/>
@@ -241,7 +247,8 @@
                     url: "/api/loginCheck",
                     data: {
                         id:$("#adminId").val() ,
-                        password: $("#passwd").val()
+                        password: $("#passwd").val(),
+                        rememberme:$("#rememberMe").is(":checked")
                     },
                     dataType: "json",
                     success: function(data) {
