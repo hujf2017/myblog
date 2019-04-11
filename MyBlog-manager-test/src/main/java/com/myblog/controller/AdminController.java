@@ -2,6 +2,7 @@ package com.myblog.controller;
 
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-@Repository
+@Controller
 @RequestMapping("/admin")
 public class AdminController {
 	@Autowired
@@ -44,6 +45,12 @@ public class AdminController {
 	@ResponseBody
 	public String testRole1(){
 		return "testRole1 success";
+	}
+	
+
+	@RequestMapping(value ="/create",method = RequestMethod.GET)
+	public String UserCreate(){
+		return "admin/login2";
 	}
 
 	@RequestMapping("/main")

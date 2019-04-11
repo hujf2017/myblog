@@ -204,18 +204,12 @@
         </div>
         <br/>
         <br/>
-         <div >
-            <span >记住我</span>
-            <input type="checkbox"  name="rememberMe" id="rememberMe" />
-        </div>
-        
         <br/>
         <p style="text-align: right;color: red;position: absolute" id="info"></p>
 
         <br/>
-        <button id="loginButton"  class="btn btn-primary">登陆
+        <button id="loginButton"  class="btn btn-primary">创建
         </button>
-		<a href="/admin/create">没有账号？先注册</a>
     </div>
     <script>
 
@@ -245,7 +239,7 @@
             else {
                 $.ajax({
                     type: "POST",
-                    url: "/api/loginCheck",
+                    url: "/api/userCreate",
                     data: {
                         id:$("#adminId").val() ,
                         password: $("#passwd").val(),

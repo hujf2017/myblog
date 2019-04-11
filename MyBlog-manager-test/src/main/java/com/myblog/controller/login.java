@@ -3,11 +3,15 @@ package com.myblog.controller;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.junit.internal.runners.statements.ExpectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.myblog.pojo.Admin;
 import com.myblog.pojo.AdminLoginLog;
 import com.myblog.service.AdminLoginLogService;
 import com.myblog.service.AdminService;
@@ -30,6 +34,26 @@ public class login {
     public String toIndex(HttpServletRequest request) {
     	
         return "admin/login";
+    }
+    
+    @RequestMapping(value = "/api/userCreate", method = RequestMethod.POST) //传用户名和密码数据
+    public String saveUser(Admin admin) {
+    	int id = admin.getId();
+    	Admin a =adminService.getById(id);
+    	if(a!=null){
+    		System.out.println("用户名已存在");
+    		System.exit(0);
+    	}
+    	String password = admin.getPassword();
+    	admin.setUsername(String.valueOf(id));
+    	int b =adminService.saveAdmin(admin);
+    	if(b==1){
+    		System.out.println("创建成功");
+    		return "admin/login3";
+    	}else{
+    		System.out.println("创建失败");
+    		return "404";
+    	}
     }
     
     
@@ -82,7 +106,6 @@ public class login {
     public String logout(HttpServletRequest request,HttpServletResponse response) {
         request.getSession().removeAttribute("admin");
         return "redirect:/admin";
-
     }
 
 }

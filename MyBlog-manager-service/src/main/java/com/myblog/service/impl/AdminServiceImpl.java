@@ -21,4 +21,10 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		 return adminDao.selectByUsername(name).getPassword();
 	}
+	
+	public int saveAdmin(Admin admin){
+		int flag =adminDao.insert(admin);
+		return flag;
+		
+	}
 }
