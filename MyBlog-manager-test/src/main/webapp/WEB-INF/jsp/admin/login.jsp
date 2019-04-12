@@ -247,7 +247,8 @@
                     type: "POST",
                     url: "/api/loginCheck",
                     data: {
-                        id:$("#adminId").val() ,
+                    	id:$("#adminId").val() ,
+                        username:$("#adminId").val() ,
                         password: $("#passwd").val(),
                         rememberme:$("#rememberMe").is(":checked")
                     },

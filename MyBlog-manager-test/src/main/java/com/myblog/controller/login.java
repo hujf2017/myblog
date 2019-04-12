@@ -42,10 +42,10 @@ public class login {
     	Admin a =adminService.getById(id);
     	if(a!=null){
     		System.out.println("用户名已存在");
-    		System.exit(0);
+    		//System.exit(0);
     	}
-    	String password = admin.getPassword();
-    	admin.setUsername(String.valueOf(id));
+    	//String password = admin.getPassword();
+    	//admin.setUsername(String.valueOf(id));
     	int b =adminService.saveAdmin(admin);
     	if(b==1){
     		System.out.println("创建成功");
@@ -58,12 +58,13 @@ public class login {
     
     
     @RequestMapping(value = "/api/loginCheck", method = RequestMethod.POST)
-    public @ResponseBody Object loginCheck(HttpServletRequest request,HttpServletResponse httpServletResponse) { 	
-        int id=Integer.parseInt(request.getParameter("id"));
+    public @ResponseBody Object loginCheck(HttpServletRequest request,HttpServletResponse httpServletResponse) { 
+    	System.out.println(request.getParameter("id"));
+        int id=Integer.parseInt(request.getParameter("id"));//1
         String passwd = request.getParameter("password");
         String isrememberMe = request.getParameter("rememberme");
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(request.getParameter("id"),passwd);
+        UsernamePasswordToken token = new UsernamePasswordToken(request.getParameter("id"),passwd);//吧输入的id转为username 001
         boolean a =false;
         switch(isrememberMe){
         	case "true": a=true;

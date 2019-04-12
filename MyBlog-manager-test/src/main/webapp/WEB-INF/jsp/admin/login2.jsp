@@ -241,7 +241,8 @@
                     type: "POST",
                     url: "/api/userCreate",
                     data: {
-                        id:$("#adminId").val() ,
+                    	id:$("#adminId").val(),
+                        username:$("#adminId").val() ,
                         password: $("#passwd").val(),
                         rememberme:$("#rememberMe").is(":checked")
                     },

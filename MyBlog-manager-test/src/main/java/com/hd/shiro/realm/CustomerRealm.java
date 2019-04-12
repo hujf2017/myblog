@@ -25,10 +25,7 @@ public class CustomerRealm extends AuthorizingRealm {
 	@Autowired
 	AdminService adminService;
 	
-    Map<String,String> map = new HashMap();
-    {
-        map.put("001","1a0e25740912f4c329cb4cf809f9592f");
-    }
+
     //授权
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String username = (String) principalCollection.getPrimaryPrincipal();
@@ -67,19 +64,15 @@ public class CustomerRealm extends AuthorizingRealm {
             return null;//密码没有是没有账号
         }
        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username,password,"customerRealm"); //正确的和错误的对比
-        authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes("hujf"));
+       // authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes("hujf"));
         return authenticationInfo;
     }
 
     private String getpasswordByUsername(String username) {
     	System.out.println("从数据库中获取相应密码");
-    	
+    	adminService.getById(Integer.parseInt(username));
         return adminService.getpasswordByUsername(username);
     }
 
-    public static void main(String []args){
-        Md5Hash mad = new Md5Hash("1234","hujf");
-        System.out.println(mad.toString());
-    }
 
 }

@@ -19,7 +19,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public String getpasswordByUsername(String name) {
 		// TODO Auto-generated method stub
-		 return adminDao.selectByUsername(name).getPassword();
+		return adminDao.selectByUsername(name).getPassword();
 	}
 	
 	public int saveAdmin(Admin admin){
