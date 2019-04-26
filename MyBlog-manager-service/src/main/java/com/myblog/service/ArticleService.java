@@ -26,7 +26,7 @@ public interface ArticleService {
 
     List<Article> selectByWord(String word);
     
-    List<Article> selectBySign(int  id);
+    List<Article> selectBySign(Integer  id);
 
     boolean insert(Article article);
 }

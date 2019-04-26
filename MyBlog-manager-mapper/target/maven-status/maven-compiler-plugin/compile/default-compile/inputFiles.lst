@@ -1,3 +1,6 @@
-D:\spring\springworkspace\MyBlog-manager\MyBlog-manager-mapper\src\main\java\com\myblog\mapper\AdminLoginLogMapper.java
-D:\spring\springworkspace\MyBlog-manager\MyBlog-manager-mapper\src\main\java\com\myblog\mapper\BgUserMapper.java
-D:\spring\springworkspace\MyBlog-manager\MyBlog-manager-mapper\src\main\java\com\myblog\mapper\AdminMapper.java
+C:\Users\xupc\gitblog\MyBlog-manager-mapper\src\main\java\com\myblog\mapper\AccountMapper.java
+C:\Users\xupc\gitblog\MyBlog-manager-mapper\src\main\java\com\myblog\mapper\AdminLoginLogMapper.java
+C:\Users\xupc\gitblog\MyBlog-manager-mapper\src\main\java\com\myblog\mapper\BgUserMapper.java
+C:\Users\xupc\gitblog\MyBlog-manager-mapper\src\main\java\com\myblog\mapper\ArticleMapper.java
+C:\Users\xupc\gitblog\MyBlog-manager-mapper\src\main\java\com\myblog\mapper\CommentMapper.java
+C:\Users\xupc\gitblog\MyBlog-manager-mapper\src\main\java\com\myblog\mapper\AdminMapper.java

@@ -22,6 +22,7 @@
    	<module>MyBlog-manager-service</module>
    	
    	<module>MyBlog-manager-test</module>
+   	<module>Hr-manager</module>
    </modules>
    	<build>
   	<plugins>

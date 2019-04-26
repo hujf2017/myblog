@@ -6,6 +6,7 @@ import org.apache.shiro.subject.Subject;
 import org.junit.internal.runners.statements.ExpectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,6 +55,29 @@ public class login {
     		System.out.println("创建失败");
     		return "404";
     	}
+    }
+    
+    @RequestMapping(value = "/api/finduser/{id}",method = RequestMethod.GET) //根据用户id查询全部信息
+    @ResponseBody
+    public Admin findUsers(@PathVariable("id") int id) {
+//    	//int id = admin.getId();
+    	Admin a =adminService.getById(id);
+//    	if(a!=null){
+//    		System.out.println("用户名已存在");
+//    		//System.exit(0);
+//    	}
+//    	//String password = admin.getPassword();
+//    	//admin.setUsername(String.valueOf(id));
+//    	int b =adminService.saveAdmin(admin);
+//    	if(b==1){
+//    		System.out.println("创建成功");
+//    		return "admin/login3";
+//    	}else{
+//    		System.out.println("创建失败");
+//    		return "404";
+//    	}
+    	System.out.println("test");
+		return a;
     }
     
     

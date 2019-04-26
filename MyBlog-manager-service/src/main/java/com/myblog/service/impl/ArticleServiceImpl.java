@@ -106,7 +106,7 @@ public class ArticleServiceImpl implements ArticleService{
 
 
 	@Override
-	public List<Article> selectBySign(int  id) {
+	public List<Article> selectBySign(Integer  id) {
 		return articleDao.selectBySign(id);
 
 		//return articleDao.se;
